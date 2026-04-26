@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #FAF7F2;
+  --ink: #2A2724;
+  --muted: #9A9189;
+  --accent: #7FA487;
+  --line: #EBE6DE;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  background: #FAF7F2;
+  color: #2A2724;
+  font-family: "Georgia", "Cambria", "Times New Roman", serif;
+}
+
+.prose-ms p { margin-bottom: 0.85rem; line-height: 1.6; }
+.prose-ms strong { font-weight: 600; }
+.prose-ms em { font-style: italic; color: var(--muted); }
+.prose-ms ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.85rem; }
+.prose-ms li { margin-bottom: 0.25rem; line-height: 1.55; }

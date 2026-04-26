@@ -1,0 +1,23 @@
+# Dependencies / build artifacts
+node_modules/
+.next/
+.venv/
+__pycache__/
+*.pyc
+
+# Local services / runtime data (never commit)
+.pgdata/
+.pgdata-logs/
+pgdata/
+*.log
+
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Editor / OS / agent state
+.DS_Store
+.claude/
+.vscode/
+.idea/
