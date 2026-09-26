@@ -1,0 +1,35 @@
+name: Lyra report
+
+# Tells Lyra (map-control-centre) about this repository: activity and
+# current-state documents, the same evidence the laptop scanner collected.
+# Authenticated by GitHub's signed identity for this run — no stored secret.
+# Read-only: it cannot push, deploy or read any other repository.
+# Vendored from map-control-centre tools/reporting/ (D-26).
+on:
+  push:
+    branches: [main, master]   # whichever is the default; Lyra accepts reports from either
+  schedule:
+    - cron: "23 5 * * 1"   # weekly, so silence means monitoring trouble, not a quiet week
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: lyra-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0              # commit counts and per-document dates
+          persist-credentials: false  # the job never needs to write
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node .lyra/report.mjs
